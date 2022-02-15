@@ -4,7 +4,7 @@ const initialState = {
   value: 0,
   isFighting: false,
   fightEnded: false,
-  endFightMessage: "",
+  fightStatus: null,
 };
 
 export const locationSlice = createSlice({
@@ -24,8 +24,8 @@ export const locationSlice = createSlice({
       state.isFighting = !state.isFighting;
     },
     toggleEndFight: (state, action) => {
-      const { endFightMessage } = action.payload || {};
-      state.endFightMessage = endFightMessage;
+      const { fightStatus } = action.payload || {};
+      state.fightStatus = fightStatus;
       state.fightEnded = !state.fightEnded;
     },
   },

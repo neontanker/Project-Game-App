@@ -8,8 +8,7 @@ import HeroItem from "./HeroItem";
 import { useState } from "react";
 import { changeHeroHealth, levelUp } from "../../../Store/hero-slice";
 import { toggleEndFight } from "../../../Store/location-slice";
-// Reuse in other files (maybe do the same with hero)
-export const getCurrentEnemies = (state) => state.enemy.currentEnemies;
+import { getCurrentEnemies } from "./selectors";
 
 //Stats array: / 0: str / 1: vit / 2: int / 3: def /
 const STRENGTH_INDEX = 0;
@@ -29,8 +28,8 @@ const Battle = (props) => {
   const [enemyMessages, setEnemyMessages] = useState("");
   const [staleTurnCounter, setStaleTurnCounter] = useState(0);
   const currentEnemies = useSelector(getCurrentEnemies);
-  const heroes = useSelector((state) => state.hero);
   const dispatch = useDispatch();
+  const heroes = useSelector((state) => state.hero);
   const currentHero = "mainHero";
   const mainHero = heroes[currentHero];
   const mainHeroStr = mainHero.stats[STRENGTH_INDEX].value;
@@ -75,49 +74,27 @@ const Battle = (props) => {
     console.log(currentEnemies.health);
     const EnemyHPCalc = currentEnemies.health - damageGiven;
     const HeroHPCalc = mainHero.health - damageTaken;
-    let endFightMessage = "";
+    let fightStatus = null;
     if (HeroHPCalc <= 0) {
       damageTaken = mainHero.health;
       //battleEnd(enemyWin)
       //props.FightToggleHandler() - not needed, we'll do this somewhere else after victory/defeat screen shows
-      endFightMessage = "You lose!";
+      fightStatus = "lose";
       dispatch(changeHeroHealth({ damageTaken }));
-      dispatch(toggleEndFight({ endFightMessage }));
+      dispatch(toggleEndFight({ fightStatus }));
       return;
     }
     console.log("EnemyHPCALC", EnemyHPCalc);
     if (EnemyHPCalc <= 0) {
       damageGiven = currentEnemies.health;
-
+      fightStatus = "win";
       // battleEnd(heroWin)
       // extract and update Hero EXP from currentLocation > currentEnemy
       dispatch(attack(damageGiven));
       dispatch(levelUp(currentEnemies.exp));
       // calculating values here as unsure how to wait for updated values from the redux store dispatch(levelUp) & mainHero.extras.experience etc..
-      if (
-        mainHero.extras.experience + currentEnemies.exp >=
-        mainHero.extras.expToLevelUp
-      ) {
-        endFightMessage = `You win! ${currentEnemies.name} gave you ${
-          currentEnemies.exp
-        } experience!\n
-        You have leveled up to level ${mainHero.extras.level + 1}! 
-        You have ${
-          mainHero.extras.experience +
-          currentEnemies.exp -
-          mainHero.extras.expToLevelUp
-        }/${
-          mainHero.extras.expToLevelUp + mainHero.extras.expToLevelUp / 2
-        } experience`;
-      } else {
-        endFightMessage = `You win! ${currentEnemies.name} gave you ${
-          currentEnemies.exp
-        } experience!
-        You are level ${mainHero.extras.level} and have ${
-          mainHero.extras.experience + currentEnemies.exp
-        }/${mainHero.extras.expToLevelUp} experience`;
-      }
-      dispatch(toggleEndFight({ endFightMessage }));
+
+      dispatch(toggleEndFight({ fightStatus }));
 
       return;
     }
