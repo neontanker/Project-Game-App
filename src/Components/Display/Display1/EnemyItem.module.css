@@ -1,0 +1,28 @@
+.desc {
+  color: white;
+  font-size: auto;
+  font-weight: bold;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+.stats {
+  display: flex;
+  justify-content: space-evenly;
+  vertical-align: bottom;
+  margin-top: 130px;
+}
+
+.stats p {
+  font-size: auto;
+  font-weight: bold;
+  padding: 5px;
+  margin: 0;
+  color: rgb(190, 242, 255);
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  height: 50px;
+}

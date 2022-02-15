@@ -1,0 +1,45 @@
+.bn632Hover {
+  min-width: 60px;
+  width: auto;
+  padding: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: 5px;
+  height: auto;
+  text-align: center;
+  border: none;
+  background-size: 300% 100%;
+  border-radius: 50px;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.bn632Hover:hover {
+  background-position: 100% 0;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.bn632Hover:focus {
+  outline: none;
+}
+
+.bn632Hover.bn27 {
+  background-image: linear-gradient(
+    to right,
+    #ed6ea0,
+    #ec8c69,
+    #f7186a,
+    #fbb03b
+  );
+  box-shadow: 0 4px 15px 0 rgba(236, 116, 149, 0.75);
+}
+.bn632Hover.disabled {
+  background-image: linear-gradient(to right, #dfdfdf, #999999);
+}

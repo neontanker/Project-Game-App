@@ -1,0 +1,7 @@
+.counterContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  vertical-align: auto;
+  text-align: center;
+}

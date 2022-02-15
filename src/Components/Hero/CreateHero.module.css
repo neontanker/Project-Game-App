@@ -1,0 +1,15 @@
+.container {
+  margin: 5px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+.styleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.input {
+  width: 60%;
+  height: auto;
+}
