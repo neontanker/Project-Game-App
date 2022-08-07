@@ -48,10 +48,10 @@ const ActiveDisplay = (props) => {
     content = <p className={classes.selectMessage}>Create a hero.</p>;
   } else {
     content = (
-      <p className={classes.selectMessage}>
-        Select a location.
-        <br /> Hint: Go to the Swamp first with 3str 2def.
-      </p>
+      <div className={classes.selectMessage}>
+        <h4>Select a location.</h4>
+        <p>Hint: Go to the Swamp first with 3str 2def.</p>
+      </div>
     );
   }
 

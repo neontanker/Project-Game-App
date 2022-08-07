@@ -8,15 +8,10 @@
   align-items: center;
   padding-right: 100px;
   padding-left: 100px;
-  padding-top: auto;
-  padding-bottom: auto;
   background-color: white;
   background-position: center;
-  padding: auto;
-  /* width: 10rem;
-  max-width: 10rem;
-  max-height: 16rem;
-  height: 16rem; */
+  height: max-content;
+  width: max-content;
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -29,6 +24,4 @@
   padding-right: 35px;
   min-height: 150px;
   min-width: 150px;
-  padding-top: auto;
-  padding-bottom: auto;
 }

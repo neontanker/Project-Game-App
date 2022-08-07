@@ -13,3 +13,6 @@
   color: white;
   text-align: center;
 }
+.selectMessage p {
+  font-size: 20px;
+}
