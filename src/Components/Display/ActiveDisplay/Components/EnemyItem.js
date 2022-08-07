@@ -1,5 +1,5 @@
 import classes from "./EnemyItem.module.css";
-import EnemyCard from "../../UI/EnemyCard";
+import EnemyCard from "../../../UI/EnemyCard";
 // import { useDispatch } from "react-redux";
 // import { changeCurrentLocation } from "../../Store/location-slice";
 

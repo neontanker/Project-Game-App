@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { toggleFight } from "../../../Store/location-slice";
-import Modal from "../../UI/Modal";
-import { getCurrentEnemies } from "./selectors";
+import { toggleFight } from "../../../../Store/location-slice";
+import Modal from "../../../UI/Modal";
+import { getCurrentEnemies } from "../../../Helpers/selectors";
 
 const EndFightScreen = (props) => {
   const fightStatus = useSelector((state) => state.currentLocation.fightStatus);
@@ -15,8 +15,6 @@ const EndFightScreen = (props) => {
   };
   let endFightMessage = "";
   if (fightStatus === "lose") {
-    //battleEnd(enemyWin)
-    //props.FightToggleHandler() - not needed, we'll do this somewhere else after victory/defeat screen shows
     endFightMessage = "You lose!";
   } else if (fightStatus === "win") {
     if (mainHero.extras.experience >= mainHero.extras.expToLevelUp) {

@@ -1,3 +1,7 @@
+# Info
+
+A small "game" created to test and learn with mainly React and Redux Toolkit, not fully finished or polished but functional and allows progression.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

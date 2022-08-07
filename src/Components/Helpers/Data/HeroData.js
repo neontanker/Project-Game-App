@@ -1,38 +1,44 @@
-const HeroData = [
-  {
+const HeroData = {
+  mainHero: {
     name: "",
-    MaxHealth: 0,
-    Health: 0,
     stats: [
       {
         id: "str",
         name: "str",
-        value: 1,
+        value: 0,
       },
       {
         id: "vit",
         name: "vit",
-        value: 2,
+        value: 0,
       },
       {
         id: "int",
         name: "int",
-        value: 3,
+        value: 0,
       },
       {
         id: "def",
         name: "def",
-        value: 4,
+        value: 0,
       },
     ],
+    maxHealth: 0,
+    health: 0,
+    abilities: {},
+    style: {
+      backgroundImage: `url(https://cdn.pixabay.com/photo/2015/05/14/15/55/character-766935_960_720.jpg)`,
+    },
+    characterCreated: false,
     extras: {
-      Abilites: "",
-      Killed: 0,
-      Experience: 0,
-      Level: 0,
-      Score: 0,
+      killed: 0,
+      expToLevelUp: 25,
+      experience: 0,
+      statPoints: 5,
+      level: 0,
+      score: 0,
     },
   },
-];
+};
 
 export default HeroData;

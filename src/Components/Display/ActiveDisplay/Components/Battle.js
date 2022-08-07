@@ -2,13 +2,13 @@ import { useDispatch, useSelector } from "react-redux";
 
 import classes from "./Battle.module.css";
 import EnemyItem from "./EnemyItem";
-import Button from "../../UI/Button";
-import { attack } from "../../../Store/enemy-slice";
+import Button from "../../../UI/Button";
+import { attack } from "../../../../Store/enemy-slice";
 import HeroItem from "./HeroItem";
 import { useState } from "react";
-import { changeHeroHealth, levelUp } from "../../../Store/hero-slice";
-import { toggleEndFight } from "../../../Store/location-slice";
-import { getCurrentEnemies } from "./selectors";
+import { changeHeroHealth, levelUp } from "../../../../Store/hero-slice";
+import { toggleEndFight } from "../../../../Store/location-slice";
+import { getCurrentEnemies } from "../../../Helpers/selectors";
 
 //Stats array: / 0: str / 1: vit / 2: int / 3: def /
 const STRENGTH_INDEX = 0;
@@ -61,9 +61,12 @@ const Battle = (props) => {
         damageGiven = currentEnemies.health;
         setHeroMessages("...");
         setEnemyMessages("I can't stand you anymore, I'm leaving.");
-        setTimeout(() => {
+        const endStaleFight = () => {
           dispatch(attack(damageGiven));
           dispatch(toggleEndFight());
+        };
+        setTimeout(() => {
+          endStaleFight();
         }, 3000);
         // battleEnd(heroWin)
         return;
@@ -75,6 +78,16 @@ const Battle = (props) => {
     const EnemyHPCalc = currentEnemies.health - damageGiven;
     const HeroHPCalc = mainHero.health - damageTaken;
     let fightStatus = null;
+    if (EnemyHPCalc <= 0) {
+      damageGiven = currentEnemies.health;
+      fightStatus = "win";
+      dispatch(attack(damageGiven));
+      dispatch(levelUp(currentEnemies.exp));
+      // calculating values here as unsure how to wait for updated values from the redux store dispatch(levelUp) & mainHero.extras.experience etc..
+      dispatch(toggleEndFight({ fightStatus }));
+
+      return;
+    }
     if (HeroHPCalc <= 0) {
       damageTaken = mainHero.health;
       //battleEnd(enemyWin)
@@ -85,19 +98,7 @@ const Battle = (props) => {
       return;
     }
     console.log("EnemyHPCALC", EnemyHPCalc);
-    if (EnemyHPCalc <= 0) {
-      damageGiven = currentEnemies.health;
-      fightStatus = "win";
-      // battleEnd(heroWin)
-      // extract and update Hero EXP from currentLocation > currentEnemy
-      dispatch(attack(damageGiven));
-      dispatch(levelUp(currentEnemies.exp));
-      // calculating values here as unsure how to wait for updated values from the redux store dispatch(levelUp) & mainHero.extras.experience etc..
 
-      dispatch(toggleEndFight({ fightStatus }));
-
-      return;
-    }
     if (noDamageGiven) {
       damageGiven = 0;
       setEnemyMessages("Blocked your attack!");

@@ -2,7 +2,7 @@ import classes from "./Display2.module.css";
 import LocationItem from "../LocationItem";
 import { useSelector } from "react-redux";
 
-const Display2 = (props) => {
+const SelectionDisplay = (props) => {
   const className = props.className;
   const isFighting = useSelector((state) => state.currentLocation.isFighting);
   const characterCreated = useSelector(
@@ -25,4 +25,4 @@ const Display2 = (props) => {
   return <div className={classes[className]}>{Locations}</div>;
 };
 
-export default Display2;
+export default SelectionDisplay;

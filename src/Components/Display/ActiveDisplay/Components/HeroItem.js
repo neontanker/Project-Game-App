@@ -1,6 +1,6 @@
-import HeroCard from "../../UI/HeroCard";
+import HeroCard from "../../../UI/HeroCard";
 import classes from "./EnemyItem.module.css";
-// Using classes from EnemyItem because (lazy) I should it refactor later to probably "BattleItem" or create a more custom Hero item.
+// Using classes from EnemyItem (lazy) I should it refactor later to probably "BattleItem" or create a more custom Hero item.
 
 const HeroItem = (props) => {
   return (

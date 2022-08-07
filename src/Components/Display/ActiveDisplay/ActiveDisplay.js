@@ -2,11 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import classes from "./Display1.module.css";
 import LocationItem from "../LocationItem";
 import Button from "../../UI/Button";
-import Battle from "./Battle";
+import Battle from "./Components/Battle";
 import { toggleEndFight, toggleFight } from "../../../Store/location-slice";
-import EndFightScreen from "./EndFightScreen";
+import EndFightScreen from "./Components/EndFightScreen";
 
-const Display1 = (props) => {
+const ActiveDisplay = (props) => {
   // Main display for current events (selected locations, battles etc)
   const dispatch = useDispatch();
   const className = props.className;
@@ -26,7 +26,7 @@ const Display1 = (props) => {
       dispatch(toggleEndFight());
     }
     // There is a bug if the modal is open you can still press buttons via Tab and Enter which causes problems, hoping to fix this by adding logic checks to redux reducer
-    // Could fix this problem with "focus lock" on the modal
+    // Could fix this problem with "focus lock" on the modal // Fixed! (keeping comment for reflection purposes)
   };
 
   let content = "";
@@ -47,7 +47,12 @@ const Display1 = (props) => {
   } else if (!characterCreated) {
     content = <p className={classes.selectMessage}>Create a hero.</p>;
   } else {
-    content = <p className={classes.selectMessage}>Select a location.</p>;
+    content = (
+      <p className={classes.selectMessage}>
+        Select a location.
+        <br /> Hint: Go to the Swamp first with 3str 2def.
+      </p>
+    );
   }
 
   return (
@@ -58,4 +63,4 @@ const Display1 = (props) => {
   );
 };
 
-export default Display1;
+export default ActiveDisplay;

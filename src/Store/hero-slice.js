@@ -1,47 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  mainHero: {
-    name: "",
-    stats: [
-      {
-        id: "str",
-        name: "str",
-        value: 0,
-      },
-      {
-        id: "vit",
-        name: "vit",
-        value: 0,
-      },
-      {
-        id: "int",
-        name: "int",
-        value: 0,
-      },
-      {
-        id: "def",
-        name: "def",
-        value: 0,
-      },
-    ],
-    maxHealth: 0,
-    health: 0,
-    abilities: {},
-    style: {
-      backgroundImage: `url(https://cdn.pixabay.com/photo/2015/05/14/15/55/character-766935_960_720.jpg)`,
-    },
-    characterCreated: false,
-    extras: {
-      killed: 0,
-      expToLevelUp: 25,
-      experience: 0,
-      statPoints: 5,
-      level: 0,
-      score: 0,
-    },
-  },
-};
+import HeroData from "../Components/Helpers/Data/HeroData";
+
+const initialState = HeroData;
 
 export const heroSlice = createSlice({
   name: "hero",
@@ -82,6 +43,7 @@ export const heroSlice = createSlice({
         state.mainHero.extras.expToLevelUp += increasedExpCap;
         state.mainHero.extras.level += 1;
         state.mainHero.extras.statPoints += 1;
+        state.mainHero.health = state.mainHero.maxHealth;
       }
     },
     setHeroBackground: (state, action) => {
