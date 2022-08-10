@@ -10,11 +10,11 @@ import { changeHeroHealth, levelUp } from "../../../../Store/hero-slice";
 import { toggleEndFight } from "../../../../Store/location-slice";
 import { getCurrentEnemies } from "../../../Helpers/selectors";
 
-//Stats array: / 0: str / 1: vit / 2: int / 3: def /
+//Stats array: / 0: str / 1: vit / 2: def /
 const STRENGTH_INDEX = 0;
 // const VITALITY_INDEX = 1;
-// const INTELLIGENCE_INDEX = 2;
-const DEFENSE_INDEX = 3;
+
+const DEFENSE_INDEX = 2;
 
 // different way (maybe slower with .find?) to get stats
 // const getStatFromMainHeroById = (mainHero, id) =>
@@ -34,7 +34,6 @@ const Battle = (props) => {
   const mainHero = heroes[currentHero];
   const mainHeroStr = mainHero.stats[STRENGTH_INDEX].value;
   // const mainHeroVit = mainHero.stats[VITALITY_INDEX].value;
-  // const mainHeroInt = mainHero.stats[INTELLIGENCE_INDEX].value;
   const mainHeroDef = mainHero.stats[DEFENSE_INDEX].value;
   const attackHandler = () => {
     let damageGiven = mainHeroStr - currentEnemies.def;
@@ -126,8 +125,8 @@ const Battle = (props) => {
           style={mainHero.style}
           health={mainHero.health}
           maxHealth={mainHero.maxHealth}
-          str={mainHero.stats[0].value}
-          def={mainHero.stats[3].value}
+          str={mainHeroStr}
+          def={mainHeroDef}
         />
         <div className={classes.under}>
           <Button onClick={attackHandler}>Attack</Button>
