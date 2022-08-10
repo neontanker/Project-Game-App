@@ -13,11 +13,6 @@ const HeroData = {
         value: 0,
       },
       {
-        id: "int",
-        name: "int",
-        value: 0,
-      },
-      {
         id: "def",
         name: "def",
         value: 0,
